@@ -20,7 +20,7 @@ Config.Cloakroom = {
 
 Config.Zones = {
 	VehicleSpawner = {
-			Pos   = {x = 581.18, y = -2291.9499999999, z = 5.13},
+			Pos   = {x = 583.75, y = -2302.68, z = 4.94},
 			Size  = {x = 2.6, y = 2.6, z = 1.0},
 			Color = {r = 0, g = 0, b = 255},
 			Type  = 27
