@@ -229,7 +229,7 @@ AddEventHandler('esx_fueldelivery:hasEnteredMarker', function(zone)
 	end
 
 end)
-
+RegisterNetEvent('esx_fueldelivery:hasExitedMarker')
 AddEventHandler('esx_fueldelivery:hasExitedMarker', function(zone)
 	ESX.UI.Menu.CloseAll()    
     CurrentAction = nil
@@ -595,29 +595,53 @@ function MissionLivraisonSelect()
 		MissionNum = math.random(1, 24)
 	
 		if MissionNum == 1 then destination = Config.Livraison.Delivery1LS namezone = "Delivery1LS" namezonenum = 1 namezoneregion = 1
+		ESX.ShowNotification(_U('delivery_1'))
 		elseif MissionNum == 2 then destination = Config.Livraison.Delivery2LS namezone = "Delivery2LS" namezonenum = 2 namezoneregion = 1
+		ESX.ShowNotification(_U('delivery_2'))
 		elseif MissionNum == 3 then destination = Config.Livraison.Delivery3LS namezone = "Delivery3LS" namezonenum = 3 namezoneregion = 1
+		ESX.ShowNotification(_U('delivery_3'))
 		elseif MissionNum == 4 then destination = Config.Livraison.Delivery4LS namezone = "Delivery4LS" namezonenum = 4 namezoneregion = 1
+		ESX.ShowNotification(_U('delivery_4'))
 		elseif MissionNum == 5 then destination = Config.Livraison.Delivery5LS namezone = "Delivery5LS" namezonenum = 5 namezoneregion = 1
+		ESX.ShowNotification(_U('delivery_5'))
 		elseif MissionNum == 6 then destination = Config.Livraison.Delivery6LS namezone = "Delivery6LS" namezonenum = 6 namezoneregion = 1
+		ESX.ShowNotification(_U('delivery_6'))
 		elseif MissionNum == 7 then destination = Config.Livraison.Delivery7LS namezone = "Delivery7LS" namezonenum = 7 namezoneregion = 1
+		ESX.ShowNotification(_U('delivery_7'))
 		elseif MissionNum == 8 then destination = Config.Livraison.Delivery8LS namezone = "Delivery8LS" namezonenum = 8 namezoneregion = 1
+		ESX.ShowNotification(_U('delivery_8'))
 		elseif MissionNum == 9 then destination = Config.Livraison.Delivery9LS namezone = "Delivery9LS" namezonenum = 9 namezoneregion = 1
+		ESX.ShowNotification(_U('delivery_9'))
 		elseif MissionNum == 10 then destination = Config.Livraison.Delivery10LS namezone = "Delivery10LS" namezonenum = 10 namezoneregion = 1
+		ESX.ShowNotification(_U('delivery_10'))
 		elseif MissionNum == 11 then destination = Config.Livraison.Delivery11LS namezone = "Delivery11LS" namezonenum = 11 namezoneregion = 1
+		ESX.ShowNotification(_U('delivery_11'))
 		elseif MissionNum == 12 then destination = Config.Livraison.Delivery12LS namezone = "Delivery12LS" namezonenum = 12 namezoneregion = 1
+		ESX.ShowNotification(_U('delivery_12'))
 		elseif MissionNum == 13 then destination = Config.Livraison.Delivery13LS namezone = "Delivery13LS" namezonenum = 13 namezoneregion = 1
+		ESX.ShowNotification(_U('delivery_13'))
 		elseif MissionNum == 14 then destination = Config.Livraison.Delivery14LS namezone = "Delivery14LS" namezonenum = 14 namezoneregion = 1
+		ESX.ShowNotification(_U('delivery_14'))
 		elseif MissionNum == 15 then destination = Config.Livraison.Delivery15LS namezone = "Delivery15LS" namezonenum = 15 namezoneregion = 1
+		ESX.ShowNotification(_U('delivery_15'))
 		elseif MissionNum == 16 then destination = Config.Livraison.Delivery16LS namezone = "Delivery16LS" namezonenum = 16 namezoneregion = 1
+		ESX.ShowNotification(_U('delivery_16'))
 		elseif MissionNum == 17 then destination = Config.Livraison.Delivery17LS namezone = "Delivery17LS" namezonenum = 17 namezoneregion = 1
+		ESX.ShowNotification(_U('delivery_17'))
 		elseif MissionNum == 18 then destination = Config.Livraison.Delivery18LS namezone = "Delivery18LS" namezonenum = 18 namezoneregion = 1
+		ESX.ShowNotification(_U('delivery_18'))
 		elseif MissionNum == 19 then destination = Config.Livraison.Delivery19LS namezone = "Delivery19LS" namezonenum = 19 namezoneregion = 1
+		ESX.ShowNotification(_U('delivery_19'))
 		elseif MissionNum == 20 then destination = Config.Livraison.Delivery20LS namezone = "Delivery20LS" namezonenum = 20 namezoneregion = 1
+		ESX.ShowNotification(_U('delivery_20'))
 		elseif MissionNum == 21 then destination = Config.Livraison.Delivery21LS namezone = "Delivery21LS" namezonenum = 21 namezoneregion = 1
+		ESX.ShowNotification(_U('delivery_21'))
 		elseif MissionNum == 22 then destination = Config.Livraison.Delivery22LS namezone = "Delivery22LS" namezonenum = 22 namezoneregion = 1
+		ESX.ShowNotification(_U('delivery_22'))
 		elseif MissionNum == 23 then destination = Config.Livraison.Delivery23LS namezone = "Delivery23LS" namezonenum = 23 namezoneregion = 1
+		ESX.ShowNotification(_U('delivery_23'))
 		elseif MissionNum == 24 then destination = Config.Livraison.Delivery24LS namezone = "Delivery24LS" namezonenum = 24 namezoneregion = 1
+		ESX.ShowNotification(_U('delivery_24'))
 		end
 		
 	end
@@ -649,7 +673,7 @@ function MissionLivraisonLetsGo()
 	EndTextCommandSetBlipName(Blips['annulermission'])
 
 	if MissionRegion == 1 then -- Los santos
-		ESX.ShowNotification(_U('meet_ls'))
+		--ESX.ShowNotification(_U('meet_ls'))
 	elseif MissionRegion == 0 then -- au cas ou
 		ESX.ShowNotification(_U('meet_del'))
 	end
