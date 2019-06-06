@@ -5,6 +5,12 @@ Citizen.CreateThread(function()
 		TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 		Citizen.Wait(0)
 	end
+
+	while ESX.GetPlayerData().job == nil do
+		Citizen.Wait(10)
+	end
+
+	ESX.PlayerData = ESX.GetPlayerData()
 end)
 --------------------------------------------------------------------------------
 -- NE RIEN MODIFIER
@@ -21,7 +27,6 @@ local MissionRetourCamion = false
 local MissionNum = 0
 local MissionLivraison = false
 local isInService = false
-local PlayerData              = nil
 local GUI                     = {}
 GUI.Time                      = 0
 local hasAlreadyEnteredMarker = false
@@ -36,12 +41,12 @@ local CurrentActionData       = {}
 --------------------------------------------------------------------------------
 RegisterNetEvent('esx:playerLoaded')
 AddEventHandler('esx:playerLoaded', function(xPlayer)
-    PlayerData = xPlayer
+	ESX.PlayerData = xPlayer
 end)
 
 RegisterNetEvent('esx:setJob')
 AddEventHandler('esx:setJob', function(job)
-	PlayerData.job = job
+	ESX.PlayerData.job = job
 end)
 
 -- MENUS
@@ -104,17 +109,18 @@ function MenuVehicleSpawner()
 		function(data, menu)
 			ESX.Game.SpawnVehicle(data.current.value, Config.Zones.VehicleSpawnPoint.Pos, 352.0, function(vehicle)
 				platenum = math.random(1, 9)
-				SetVehicleNumberPlateText(vehicle, "RONFUEL"..platenum)     
+				SetVehicleNumberPlateText(vehicle, "RONFUEL"..platenum)  
                 TriggerServerEvent("esx_fueldelivery:truckpay")	
                 ESX.ShowNotification(_U('truck_deposit'))				
                 MissionLivraisonSelect()
 				plaquevehicule = "RONFUEL"..platenum
+				exports["LegacyFuel"]:SetFuel(vehicle, 65) 
 				if data.current.value == 'phantom3' then
 					ESX.Game.SpawnVehicle("tanker", Config.Zones.VehicleSpawnPoint.Pos, 352.0, function(trailer)
 					    AttachVehicleToTrailer(vehicle, trailer, 1.1)
 					end)
 				end				
-				TaskWarpPedIntoVehicle(GetPlayerPed(-1), vehicle, -1)   
+				TaskWarpPedIntoVehicle(GetPlayerPed(-1), vehicle, -1)
 			end)
 
 			menu.close()
@@ -138,9 +144,9 @@ function IsATruck()
 end
 
 function IsJobfueldelivery()
-	if PlayerData ~= nil then
+	if ESX.PlayerData ~= nil then
 		local IsJobfueldelivery = false
-		if PlayerData.job.name ~= nil and PlayerData.job.name == 'fueldelivery' then
+		if ESX.PlayerData.job and ESX.PlayerData.job.name == 'fueldelivery' then
 			IsJobfueldelivery = true
 		end
 		return IsJobfueldelivery
@@ -450,7 +456,7 @@ Citizen.CreateThread(function()
         	AddTextComponentString(CurrentActionMsg)
        		DisplayHelpTextFromStringLabel(0, 0, 1, -1)
 
-            if IsControlJustReleased(0, 26) and IsJobfueldelivery() then
+            if IsControlJustReleased(0, 26) and ESX.PlayerData.job and ESX.PlayerData.job.name == 'fueldelivery' then
 
                 if CurrentAction == 'delivery' then
                     nouvelledestination()
@@ -519,7 +525,7 @@ Citizen.CreateThread(function()
 		
 		Wait(0)
 		
-		if IsJobfueldelivery() then
+		if ESX.PlayerData.job and ESX.PlayerData.job.name == 'fueldelivery' then
 
 			local coords      = GetEntityCoords(GetPlayerPed(-1))
 			local isInMarker  = false
